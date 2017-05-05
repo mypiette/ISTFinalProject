@@ -1,0 +1,31 @@
+#
+# hw12update.txt Project Update
+# Name: Marie Piette
+# Date: 4/25/17
+# Project Name: Help me choose!
+
+As you may recall, my project was inspired by a group of friends and I not being 
+able to decide where to go for dinner one night. We had a lot of options but because 
+we were so hungry, we simply could not choose. What we needed was someone or someTHING 
+to help us make a decision. And thus, this project was born.
+
+My overall goal is to try to use as much, if not all, of the functions that are offered 
+by the Random python module to make a library of decision helper functions. The library 
+would include simple functions such as random.choice to more complex such as random.shuffle 
+or a variation of coin flips for various choices. I am planning on leveraging some common 
+decision functions, such as rock, paper, scissors, and pick a number, as well as more complex 
+ones such as using several layers of rock, paper, scissors, lizard,spock to narrow down answers.
+
+As of right now, I have a couple of the functions for choosing between two answers. I decided 
+to differentiate between number of choices simply to make the user feel that they can have the 
+best possibilities for their decision making process based on number of choices as well as to make 
+each answer more focused. So the user can choose between having 2 choices, 3 choices, or more than 
+3 choices, in which they will be making a whole new array. 
+
+The attached page of screenshots of both the 2choices - Random function and the 
+2choices - Rock, Paper, Scissors functions. They're currently handled in the terminal for ease of 
+use, though I did try to make them more readable/user friendly. 
+
+
+
+
