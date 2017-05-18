@@ -1,0 +1,145 @@
+In [15]: run decisionHelper.py
+
+In [16]: main()
+Hello! Welcome to the Decision Helper, where we try to help you narrow down your choices. First...
+
+Please select how many choices you are offering:
+(1) Two Choices
+(2) Three Choices
+(3) More than Three Choices
+(9) Quit
+
+1
+
+You've chosen option 1) Two Choices
+Please enter your two choices.
+85 degrees
+cheesecake factory
+
+Great! Your choices were:
+85 degrees
+cheesecake factory
+
+Now that you've entered your choices...
+
+Please choose what type of Decision Helper function you would like to use:
+(1) Flip a Coin
+(2) Rock, Paper, Scissors
+(3) Rock, Paper, Scissors, Lizard, Spock
+(4) Random among random
+(9) Quit
+
+3
+
+You chose option 3) Rock, Paper, Scissors, Lizard, Spock
+Now we will play 1 round of 'Rock, Paper, Scissors, Lizard, Spock'
+
+Out of your two choices below, which one would you like to represent? If you enter 'random' then t
+he Decision Helper will randomly decide which one you will play for.
+85 degrees
+cheesecake factory
+
+85 degrees
+
+You are now playing:  85 degrees
+Decision Helper is now playing:  cheesecake factory
+With that decided...
+Choose your weapon: rock, paper, scissors, lizard, spock
+spock
+
+the User (You) chose: spock
+the Decision Helper chose: rock
+
+'spock' vaporizes 'rock'. So you win!
+And therefore, the decision is: " 85 degrees "
+
+Would you like to play Rock, Paper, Scissors, Lizard Spock again with the same choices? Y or N
+y
+
+Here we go again!
+Now we will play 1 round of 'Rock, Paper, Scissors, Lizard, Spock'
+
+Out of your two choices below, which one would you like to represent? If you enter 'random' then t
+he Decision Helper will randomly decide which one you will play for.
+85 degrees
+cheesecake factory
+
+cheesecake factory
+
+You are now playing:  cheesecake factory
+Decision Helper is now playing:  85 degrees
+
+With that decided...
+Choose your weapon: rock, paper, scissors, lizard, spock
+scissors
+
+the User (You) chose: scissors
+the Decision Helper chose: spock
+
+'spock' smashes 'scissors'. So Decision Helper wins!
+And therefore, the decision is: " 85 degrees "
+
+Out[16]: True
+
+In [17]: main()
+Hello! Welcome to the Decision Helper, where we try to help you narrow down your choices. First...
+
+Please select how many choices you are offering:
+(1) Two Choices
+(2) Three Choices
+(3) More than Three Choices
+(9) Quit
+
+1
+
+You've chosen option 1) Two Choices
+Please enter your two choices.
+85 degrees
+cheesecake
+
+Great! Your choices were:
+85 degrees
+cheesecake
+
+Now that you've entered your choices...
+
+Please choose what type of Decision Helper function you would like to use:
+(1) Flip a Coin
+(2) Rock, Paper, Scissors
+(3) Rock, Paper, Scissors, Lizard, Spock
+(4) Random among random
+(9) Quit
+
+4
+
+You chose option 4) 'Random among random'. This means that Decision Helper will create a list of a
+ random multiple (between 0 and 1000) of each choice and then choose among said list of choices.
+list of multiples:  [7, 6]
+x:  7
+x:  6
+The final list of choices, with the random multiple of each choice: ['85 degrees', '85 degrees', '
+85 degrees', '85 degrees', '85 degrees', '85 degrees', '85 degrees', 'cheesecake', 'cheesecake', '
+cheesecake', 'cheesecake', 'cheesecake', 'cheesecake']
+Decision Helper decided:
+" 85 degrees "
+Would you like to play "Random among random" again with the same choices? Y or N
+y
+
+Here we go again!
+list of multiples:  [3, 3]
+x:  3
+x:  3
+The final list of choices, with the random multiple of each choice: ['85 degrees', '85 degrees', '
+85 degrees', 'cheesecake', 'cheesecake', 'cheesecake']
+And therefore, the decision is: " cheesecake "
+
+Would you like to play "Random among random" again with the same choices? Y or N
+n
+
+Ok no problem!
+Hope that helped!
+
+Are you done deciding? Y or N
+y
+
+Congrats! Have a good one :)

@@ -24,7 +24,7 @@ __status__ = "Production"
 import random          # imports the library named random for computer options, and will be the main focus of this module
 
 
-# print("Please type 'rps()' to proceed.") #to guide user
+print("Please type 'Start()' to proceed.") #to guide user
 
 
 
@@ -45,7 +45,7 @@ def kindOfDecisionsTwoChoices():
     print("(1) Flip a Coin")
     print("(2) Rock, Paper, Scissors")
     print("(3) Rock, Paper, Scissors, Lizard, Spock")
-    print("(4) Random among random")
+    print("(4) Random among random") #random among probabilities
     #print("(4) Tic Tac Toe/chess with user")
     #print("(5) Tic Tac Toe/chess with 2 computers")
     print("(9) Quit")
@@ -54,9 +54,10 @@ def kindOfDecisionsTwoChoices():
 def kindOfDecisionsThreeChoices():
     """ a function that simply prints the menu for the types of decisions that can be made """
     print()
+    print("Please choose what type of Decision Helper function you would like to use:")
     print("(1) Random")
     print("(2) Coin Flips") #see website
-    print("(3) Matches in 4")#??
+    print("(3) Matches in 4 - TBD")#??
     print("(4) Shuffle among choices") # shuffle and designate what place in the list and that's the choice
     print("(5) Random among random")
     #print("(4) Tic Tac Toe/chess between computer")
@@ -75,10 +76,16 @@ def kindOfDecisionMoreThanThreeChoices():
     print("(9) Quit")
     print()
 
+
 def printList(L):
     """ prints the list line by line"""
     for x in L:
         print(x)
+
+def printListWithIndex(L):
+    """ prints the list line by line"""
+    for x in L:
+        print(L.index(x),")", x)
 
 
 def rockPaperScissors2(L):
@@ -94,14 +101,14 @@ def rockPaperScissors2(L):
     printList(L)
     print()
     userChoiceRep = input() # user chooses which one they are playing for
-    dhChoiceRep = ""
+    dhChoiceRep = L[0] #make default just so none doesn't show up
 
     if userChoiceRep == 'random' or userChoiceRep == 'Random'or userChoiceRep == 'RANDOM':
         userChoiceRep = random.choice(L) #decision helper will choose which one the user will represent
         print("Since you chose 'random', the Decision Helper decided that you would represent:")
         print("\"",userChoiceRep,"\"")
     
-    if userChoiceRep == L[0]: #the computer will then be the other choice
+    elif userChoiceRep == L[0]: #the computer will then be the other choice
         dhChoiceRep = L[1]
     elif userChoiceRep == L[1]:
         dhChoiceRep = L[0]
@@ -109,7 +116,7 @@ def rockPaperScissors2(L):
         print("I'm sorry, ",userChoiceRep,"is not one of the choices offered.")
         print("Please try again")
         rockPaperScissors2(L)
-        # print("SILLY MARIE FIGURE IT OUT")
+        # continue
 
 
     print()
@@ -120,19 +127,19 @@ def rockPaperScissors2(L):
     print("With that decided...")
     
     user = input("Choose your weapon: rock, paper, or scissors \n") # has user choose weapon
-    comp = random.choice( ['rock','paper','scissors'] ) #randomly chooses one of the 3
+    comp = random.choice( ["rock","paper","scissors"] ) #randomly chooses one of the 3
     print() # added spacing
 
     print('the User (You) chose:', user) # identify "inputs"
     print('the Decision Helper chose:', comp)
     print()
 
-    if user == 'rock' or user =='Rock': #two options, just in case user uses caps # User chooses Rock
-        if comp == 'paper' or comp == 'Paper': 
+    if user == "rock" or user =="Rock": #two options, just in case user uses caps # User chooses Rock
+        if comp == "paper" or comp == "Paper": 
             print("'" + comp + "' covers '" + user +"'. So Decision Helper wins!") # added the reasoning of why who won # used the real inputs for debuggin/just in case mistypes
             return dhChoiceRep
         
-        elif comp == 'scissors' or comp == 'Scissors':
+        elif comp == "scissors" or comp == "Scissors":
             print( "'" + user + "' crushes '" + comp + "'. So you win!")
             return userChoiceRep
 
@@ -144,12 +151,12 @@ def rockPaperScissors2(L):
 
             # print("SILLY MARIE - PUT IN A WHILE LOOP TO HANDLE TIES AND BREAKS FOR ROCK")
 
-    elif user == 'paper' or user =='Paper':  #User chooses Paper
-        if comp == 'rock' or comp == 'Rock':
+    elif user == "paper" or user =="Paper":  #User chooses Paper
+        if comp == "rock" or comp == "Rock":
             print("'" + user + "' covers '" + comp +"'. So you win!") 
             return userChoiceRep
             
-        elif comp == 'scissors' or comp == 'Scissors':
+        elif comp == "scissors" or comp == "Scissors":
             print( "'" + comp + "' cuts '" + user + "'. So Decision Helper wins!")
             return dhChoiceRep              
 
@@ -159,12 +166,12 @@ def rockPaperScissors2(L):
             print()
             rockPaperScissors2(L)
             
-    elif user == 'scissors' or user =='Scissors': #User chooses Scissors
-        if comp == 'rock' or comp == 'Rock':
+    elif user == "scissors" or user =="Scissors": #User chooses Scissors
+        if comp == "rock" or comp == "Rock":
             print("'" + comp + "' crushes '" + user +"'. So Decision Helper wins!") 
             return dhChoiceRep
             
-        elif comp == 'paper' or comp == 'Paper':
+        elif comp == "paper" or comp == "Paper":
             print( "'" + user + "' cuts '" + comp + "'. So you win!")
             return userChoiceRep
 
@@ -183,6 +190,7 @@ def rockPaperScissorsLizardSpock2(L):
     """ this plays a game of rock-paper-scissors-lizard-spock
         input L: list of 2 choices
         outputs: returns winning choice
+        source: http://bigbangtheory.wikia.com/wiki/Rock_Paper_Scissors_Lizard_Spock
     """
     
     print("Now we will play 1 round of 'Rock, Paper, Scissors, Lizard, Spock'\n")
@@ -396,53 +404,223 @@ def randomAmongRandom(L):
 def coinFlips3(L): 
     """play an orchestrated game of flipping coins for some 'random' calibration
         input L: list of choices
+        source: https://www.quora.com/How-do-you-decide-the-winner-among-3-people-with-an-equal-probability-by-tossing-a-fair-coin
     """
-
-    print("You'll have to choose (twice) which combination you want to live and which choice they represent")
-    reps1 = input("Choose between  HH, HT, TH, or TT with H == heads and T == Tails") #reps1 = representing first choice
+    userCoinChoices = []
+    print("You'll have to choose (twice) which combination you want to win and which choice they represent")
+    reps1 = input("Choose between  HH, HT, TH, or TT with H == heads and T == Tails \n") #reps1 = representing first choice
+    print()
+    leftOverList = []
     if reps1 == "HH" or reps1 == "hh":
-        reps2 = input("Choose a second combination between HT, TH, or TT with H == heads and T == Tails")
+        reps2 = input("Choose a second combination between HT, TH, or TT with H == heads and T == Tails \n")
+        print()
         if reps2 == "HT":
-            comp = random.choose("TH", "TT")
+            leftOverList = ["TH", "TT"]
+            comp = random.choice(leftOverList)
         elif reps2 == "TH":
-            comp = random.choose("HT", "TT")
+            leftOverList = ["HT", "TT"]
+            comp = random.choice(leftOverList)
         elif reps2 == "TT":
-            comp = random.choose("HT", "TH")
+            leftOverList = ["HT", "TH"]
+            comp = random.choice(leftOverList)
         else:
-            print("DO SOMETHING WITH THE MIstYPE SILLY")
+            print("I didn't understand your answer. Please try again!")
+            coinFlips3(L)
     
     elif reps1 == "HT" or reps1 == "ht":
-        reps2 = input("Choose a second combination between HH, TH, or TT with H == heads and T == Tails")
+        reps2 = input("Choose a second combination between HH, TH, or TT with H == heads and T == Tails \n")
+        print()
         if reps2 == "HH":
-            comp = random.choose("TH", "TT")
+            leftOverList = ["TH", "TT"]
+            comp = random.choice(leftOverList)
         elif reps2 == "TH":
-            comp = random.choose("HH", "TT")
+            leftOverList = ["HH", "TT"]
+            comp = random.choice(leftOverList)
         elif reps2 == "TT":
-            comp = random.choose("HH", "TH")
+            leftOverList = ["HH", "TH"]
+            comp = random.choice(leftOverList)
+        else:
+            print("I didn't understand your answer. Please try again!")
+            coinFlips3(L)
             
     elif reps1 == "TH" or reps1 == "th":
-        reps2 = input("Choose a second combination between HH, HT, or TT with H == heads and T == Tails")
+        reps2 = input("Choose a second combination between HH, HT, or TT with H == heads and T == Tails \n")
+        print()
         if reps2 == "HH":
-            comp = random.choose("HT", "TH")
+            leftOverList = ["HT", "TH"]
+            comp = random.choice(leftOverList)
         elif reps2 == "HT":
-            comp = random.choose("HH", "TT")
+            leftOverList = ["HH", "TT"]
+            comp = random.choice(leftOverList)
         elif reps2 == "TT":
-            comp = random.choose("HH", "HT")
+            leftOverList = ["HH", "HT"]
+            comp = random.choice(leftOverList)
+        else:
+            print("I didn't understand your answer. Please try again!")
+            coinFlips3(L)
+
     elif reps1 == "TT" or reps1 == "tt":
-        reps2 = input("Choose a second combination between HH, HT, or TH with H == heads and T == Tails")
+        reps2 = input("Choose a second combination between HH, HT, or TH with H == heads and T == Tails \n")
+        print()
         if reps2 == "HH":
-            comp = random.choose("HT", "TH")
+            leftOverList = ["HT", "TH"]
+            comp = random.choice(leftOverList)
         elif reps2 == "HT":
-            comp = random.choose("HH", "TT")
+            leftOverList = ["HH", "TT"]
+            comp = random.choice(leftOverList)
         elif reps2 == "TT":
-            comp = random.choose("HH", "HT")
+            leftOverList = ["HH", "HT"]
+            comp = random.choice(leftOverList)
+        else:
+            print("I didn't understand your answer. Please try again!")
+            coinFlips3(L)
     else:
         print("I didn't understand your answer. Please try again!")
         coinFlips3(L)
+
+    userCoinChoices = [reps1, reps2]
+    dhCoinChoices = [comp]
+    print()
+    print("You have chosen the following two coin combinations: ")
+    printList(userCoinChoices)
+    print("Decision Helper has chosen: ")
+    printList(dhCoinChoices)
+    print()
+
+    matrixComboToChoices = []
+    print("Now choose which coin combination represents which choice. If you would like Decision Helper to choose, type \'random\' otherwise hit enter")
+    printListWithIndex(L)
+    rep = ""
+    reps = []
+    if input() == 'random':
+        print("do something with random")
+    else:
+        for x in userCoinChoices:
+            print("What does ", x, " represent? 0, 1, or 2")
+            r = input()
+            
+            
+            try:
+                r = int(r)   # make into an int!
+            except:
+                print("I didn't understand your input! Continuting...")
+                continue
+
+            if r == 0:
+                rep = L[0]
+            elif r == 1:
+                rep = L[1]
+            elif r == 2:
+                rep = L[2]
+            else:
+                print("I didn't understand your input! Continuing...")
+                continue
+            matrixComboToChoices.append([x,rep])
+            print()
+            reps.append(rep)
+            # printList(matrixComboToChoices)
+
+    #adding the last choice with decision helpers choice
+    if reps[0] == L[0]:
+        if reps[1] == L[1]: # i know it's not clean, but my brain isn't working and so at least this does
+            matrixComboToChoices.append([dhCoinChoices[0],L[2]])
+        elif reps[1] == L[2]:
+            matrixComboToChoices.append([dhCoinChoices[0],L[1]])
+    elif reps[0] == L[1]:
+        if reps[1] == L[0]: # i know it's not clean, but my brain isn't working and so at least this does
+            matrixComboToChoices.append([dhCoinChoices[0],L[2]])
+        elif reps[1] == L[2]:
+            matrixComboToChoices.append([dhCoinChoices[0],L[0]])
+    elif reps[0] == L[2]:
+        if reps[1] == L[0]: # i know it's not clean, but my brain isn't working and so at least this does
+            matrixComboToChoices.append([dhCoinChoices[0],L[1]])
+        elif reps[1] == L[1]:
+            matrixComboToChoices.append([dhCoinChoices[0],L[0]])
+
+    else:
+        matrixComboToChoices.append([dhCoinChoices,"marie fails"])
+
+    
+
+
+    print("The coinflip choices and their representations look like this: ")
+    printList(matrixComboToChoices)
+    print()
+    print("Now the Decision Helper is going to flip the coin twice. The combination that matches the coin flips, means that choice wins.")
+
+    coinFlipOptions = ["H", "T"]
+    coinFlip1 = random.choice(coinFlipOptions)
+    coinFlip2 = random.choice(coinFlipOptions)
+    dhCoinFlips = [coinFlip1, coinFlip2]
+
+    print()
+    # print("The coin flips results were:")
+    # printList(dhCoinFlips)
+
+    coinFlipsResult = ''.join(dhCoinFlips)
+    print("The coin flips results were: ", coinFlipsResult)
+    # print()
+    
+
+    for coins in matrixComboToChoices:
+        for pairs in coins:
+            # print("index:", coins.index(pairs), "value: ", pairs)
+            if coins.index(pairs) == 0:
+                if pairs == coinFlipsResult:
+                    # print("pairs == coinFlipsResults:", pairs, "==", coinFlipsResult)
+                    if pairs == dhCoinChoices[0]:
+                        # print("pairs == dhCoinChoices:", pairs, "==", dhCoinChoices[0])
+                        print("Decision Helper wins!")
+                        print()
+                        return coins[1]
+                    elif pairs == userCoinChoices[0] or pairs == userCoinChoices[1]: #user choices
+                        # print("pairs == userCoinChoices[0]:", pairs, "==", userCoinChoices[0], "or pairs == userCoinChoices[1]", userCoinChoices[1])
+                        print("You win!")
+                        print()
+                        return coins[1]
+                    # else:
+                    #     print("MARIE FIGURE IT OUTTT")
+
+    print("The coin flips did not match any of the choices. Going to flip coins again and try it again") #wont be called unless the for loop didnt end with a return
+    while True:
+        coinFlipOptions = ["H", "T"]
+        coinFlip1 = random.choice(coinFlipOptions)
+        coinFlip2 = random.choice(coinFlipOptions)
+        dhCoinFlips = [coinFlip1, coinFlip2]
+        print()
+        coinFlipsResult = ''.join(dhCoinFlips)
+        print("The coin flips results were: ", coinFlipsResult)
+        for coins in matrixComboToChoices:
+            for pairs in coins:
+                # print("index:", coins.index(pairs), "value: ", pairs)
+                if coins.index(pairs) == 0 and pairs == coinFlipsResult:
+                    # print("pairs == coinFlipsResults:", pairs, "==", coinFlipsResult)
+                    if pairs == dhCoinChoices:
+                        # print("pairs == dhCoinChoices:", pairs, "==", dhCoinChoices)
+                        print("Decision Helper wins!")
+                        print()
+                        return coins[1]
+                    elif pairs == userCoinChoices[0] or pairs == userCoinChoices[1]: #user choices
+                        # print("pairs == userCoinChoices[0]:", pairs, "==", userCoinChoices[0], "or pairs == userCoinChoices[1]", userCoinChoices[1])
+                        print("You win!")
+                        print()
+                        return coins[1]
+
+                    else:
+                        print("AHH MARIE FAILEDDDD")
+                        break
+                else:
+                    continue #run again
+
+
+    # print("This means that ", coinFlipsResult, " won")
+
+
+
         
     
 
-def main():
+def Start():
     """ the main user-interaction loop """
 
     print("Hello! Welcome to the Decision Helper, where we try to help you narrow down your choices. First...")
@@ -482,29 +660,32 @@ def main():
             if kd == 1: #flip a coin == random between 2 choices
                 decision = random.choice(choices)
                 print()
-                print("You chose option 1) 'Random' and the Decision Helper decided: ")
+                print("You chose option 1) 'Flip a Coin' and the Decision Helper decided: ")
                 print("\"", decision, "\"")
                 print("Hope that helped!")
 
             elif kd == 2:
                 print()
                 print("You chose option 2) Rock, Paper, Scissors")
-                decision = rockPaperScissors2(choices)
-                print("And therefore, the decision is: \"", decision, "\"")
+                decisionRPS = rockPaperScissors2(choices)
+                print("And therefore, the decision is: \"", decisionRPS, "\"")
                 print()
-                print("Would you like to play Rock, Paper, Scissors again with the same choices? Y or N") #play rock paper scissors again with same choices
-                rpsAgain = input()
-                print()
-                if rpsAgain == 'Y' or rpsAgain == 'y' or rpsAgain == 'Yes':
-                    print("Here we go again!")
-                    decision = rockPaperScissors2(choices)
-                    print("And therefore, the decision is: \"", decision, "\"")
+                while True:
+                    print("Would you like to play Rock, Paper, Scissors again with the same choices? Y or N") #play rock paper scissors again with same choices
+                    rpsAgain = input()
                     print()
-                elif rpsAgain == 'N' or rpsAgain == 'n' or rpsAgain == 'No' or rpsAgain == 'no':
-                    print("Ok no problem!")
-                else:
-                    print("I didn't understand your input! Continuting...")
-                    continue 
+                    if rpsAgain == 'Y' or rpsAgain == 'y' or rpsAgain == 'Yes':
+                        print("Here we go again!")
+                        decisionRPS = rockPaperScissors2(choices)
+                        print("And therefore, the decision is: \"", decisionRPS, "\"")
+                        print()
+                        continue
+                    elif rpsAgain == 'N' or rpsAgain == 'n' or rpsAgain == 'No' or rpsAgain == 'no':
+                        print("Ok no problem!")
+                        break
+                    else:
+                        print("I didn't understand your input! Continuting...")
+                        continue 
 
                 print("Hope that helped!")
 
@@ -524,10 +705,10 @@ def main():
                         decision = rockPaperScissorsLizardSpock2(choices)
                         print("And therefore, the decision is: \"", decision, "\"")
                         print()
-                        return True
+                        continue
                     elif rpslsAgain == 'N' or rpslsAgain == 'n' or rpslsAgain == 'No' or rpslsAgain == 'no':
                         print("Ok no problem!")
-                        return False
+                        break
                     else:
                         print("I didn't understand your input! Continuting...")
                         continue 
@@ -573,46 +754,79 @@ def main():
             printList(choices)
             print()
             print("Now that you've entered your choices...")
-            kindOfDecisionsTwoChoices()
+            kindOfDecisionsThreeChoices()
+            kd = input()
             try:
                 kd = int(kd)   # make into an int!
             except:
-                print("I didn't understand your input! Continuting...")
-                continue     
+                print("I didn't understand your input...Please Try again!")
+                kindOfDecisionsThreeChoices()
 
-            if kd == 1: #flip a coin == random between 2 choices
+            if kd == 1: #choose randomly between the 3
+                
                 decision = random.choice(choices)
                 print()
                 print("You chose option 1) 'Random' and the Decision Helper decided: ")
                 print("\"", decision, "\"")
+
+                # print("need to test loop still")
+                while True: #keep asking until they say no
+                    print("Would you like to play 1) Random again with the same choices? Y or N") #play rock paper scissors again with same choices
+                    rand3again = input()
+                    print()
+                    if rand3again == 'Y' or rand3again == 'y' or rand3again == 'Yes' or rand3again == 'yes':
+                        print("Here we go again!")
+                        decision = random.choice(choices)
+                        print("And therefore, the decision is: \"", decision, "\"")
+                        print()
+                        continue
+                    elif rand3again == 'N' or rand3again == 'n' or rand3again == 'No' or rand3again == 'no':
+                        print("Ok no problem!")
+                        break
+                    else:
+                        print("I didn't understand your input! Continuting...")
+                        continue 
+
+
+
+                    
                 print("Hope that helped!")
 
             elif kd ==2:
+                print()
                 print("You chose option 2) Coin Flips. This means you'll play a round of coin flips that is meant for 3 choices.")
-                #method
+                winner = coinFlips3(choices)
+                print("And therefore, the decision is: \"", decision, "\"")
+                print()
+
+                # print("need to test loop still")
+                while True: #keep asking until they say no
+                    print("Would you like to play 2) Coin Flips again with the same choices? Y or N") #play rock paper scissors again with same choices
+                    coins3again = input()
+                    print()
+                    if coins3again == 'Y' or coins3again == 'y' or coins3again == 'Yes' or coins3again == 'yes':
+                        print("Here we go again!")
+                        decision = coinFlips3(choices)
+                        print("And therefore, the decision is: \"", decision, "\"")
+                        print()
+                        continue
+                    elif coins3again == 'N' or coins3again == 'n' or coins3again == 'No' or coins3again == 'no':
+                        print("Ok no problem!")
+                        break
+                    else:
+                        print("I didn't understand your input! Continuting...")
+                        continue 
+
+            elif kd ==9:
+                break
             
-
-
-
-
-def kindOfDecisionsThreeChoices():
-    """ a function that simply prints the menu for the types of decisions that can be made """
-    print()
-    print("(1) Random")
-    print("(2) Coin Flips") #see website
-    print("(3) Matches in 4")#??
-    print("(4) Shuffle among choices") # shuffle and designate what place in the list and that's the choice
-    print("(5) Random among random")
-    #print("(4) Tic Tac Toe/chess between computer")
-    print("(9) Quit")
-    print()
-            
-
         elif numChoice == 9:
             break
             
         else:
-            print("silly marie, you need do something!!!")
+            print("I didn't understand your answer. Please try again!")
+            Start()
+
 
         print()
         print("Are you done deciding? Y or N")
@@ -624,65 +838,38 @@ def kindOfDecisionsThreeChoices():
             print("\nCongrats! Have a good one :)")
             break
 
-        
+
+# DEMOS ARE AWESOME!!!
+
+""" functions used from random library:
+    random.choice()
+    random.randrange()
 
 
-    
-
-
-
-
-
-
-
-
+"""
 
 
 
 
+"""
+#things to use:
+
+random.randint(a, b)
+    Return a random integer N such that a <= N <= b.
+    option for randomly choosing which type of decisionhelper function
+    ?even for which number of decisions
 
 
+random.shuffle(x[, random])¶
+    Shuffle the sequence x in place. The optional argument random is a 0-argument function returning a random float in [0.0, 1.0); by default, this is the function random().
+    Note that for even rather small len(x), the total number of permutations of x is larger than the period of most random number generators; this implies that most permutations of a long sequence can never be generated.
+
+    use for multiple choices - shuffle and choose the one in L[0]
 
 
+random.random()
+    Return the next random floating point number in the range [0.0, 1.0).
+    use for random of random
 
 
-#ORIGINAL COPY AND PASTE FORM HW0 LAB
-# # coding: utf-8
-# #
-# # hw0pr2.py
-# #
-
-# """ 
-# Notes on this rps function:
-
-
-# """
-# import time            # includes a library named time
-# import random        # includes a library named random
-
-
-# def rps():
-#     """ this plays a game of rock-paper-scissors
-#         (or a variant of that game ...)
-#         inputs: no inputs    (prompted text doesn't count as input)
-#         outputs: no outputs  (printing doesn't count as output)
-#     """
-#     name = input('Hi...what is your name? ')
-#     print()
-#     print("Hmmm...")
-#     print()
-
-#     if name == 'Geoff' or name == 'Colleen':
-#         print('I\'m "offline" Try later.')
-        
-#     elif name == 'Zach':
-#         print('Zach!  Efron? Quinto? Galifianakis?')
-#         time.sleep(1)
-#         print('No?')
-#         time.sleep(1)
-#         print('Meh.')
-        
-#     else:
-#         print('Welcome,', name)
-#         my_choice = random.choice( ['rock','paper','scissors'] )
-#         print('By the way, I choose ', my_choice)
+"""
