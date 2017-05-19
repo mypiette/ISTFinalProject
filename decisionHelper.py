@@ -34,7 +34,7 @@ def numOfChoices():
     print("Please select how many choices you are offering:")
     print("(1) Two Choices")
     print("(2) Three Choices")
-    print("(3) More than Three Choices")
+    print("(3) More Than Three Choices")
     print("(9) Quit")
     print()
 
@@ -68,11 +68,11 @@ def kindOfDecisionMoreThanThreeChoices():
     """ a function that simply prints the menu for the types of decisions that can be made """
     print()
     print("(1) Random")
-    print("(2) Coin Flips with decision")
+    # print("(2) Coin Flips with decision") #not sure how to do it easily with a lot of choices
     #if i have time # print("(3) Shuffle among cards") #assign choices to a set of cards and then choose a random card and itll correspond to whatever choices??
-    print("(3) Shuffle among choices") #similar to 3 choices
-    print("(4) Psuedo Random through chosen Probabilities")
-    print("(5) Random among random")
+    print("(2) Shuffle among choices") #similar to 3 choices
+    # print("(4) Psuedo Random through chosen Probabilities") #next time
+    print("(3) Random among random")
     #print("(4) Tic Tac Toe/chess between computer")
     print("(9) Quit")
     print()
@@ -384,15 +384,16 @@ def randomAmongRandom(L):
     numOfNeededMultiples = len(L)
     multiplesList = []
     for x in range(numOfNeededMultiples): #creates list of multiples needed
-        multiple = random.randrange(1,10) #uses the "randrange" function of random library to choose a random number between 0 and 1000 to have that many multiples of each choice
+        multiple = random.randrange(1,57) #uses the "randrange" function of random library to choose a random number between 0 and 1000 to have that many multiples of each choice
         multiplesList.append(multiple)
     
     print("list of multiples: ")
-    printLis(multiplesList)
+    printList(multiplesList)
+    print()
 
     choicesToMultiple = [] #create list of multiples to match with choices
     for x in multiplesList: #for the each value of multiplesList
-        print("x: ", x)
+        # print("x: ", x)
         while x > 0 and len(L) >= 1:
             # print("L[0] = ", L[0]) #testing
             choicesToMultiple.append(L[0])
@@ -402,7 +403,8 @@ def randomAmongRandom(L):
         # print("L: ", L) #testing
                 
 
-    print("The final list of choices, with the random multiple of each choice:", choicesToMultiple)
+    print("The final list of choices, with the random multiple of each choice:")
+    print(choicesToMultiple)
 
     #original code when i was making it specifically 2 choices - changed and adapted for more than that
         # randomMultiple1 = random.randrange(0,10) #uses the "randrange" function of random library choose a random number between 0 and 1000 to have that many multiples of first choice
@@ -420,7 +422,7 @@ def randomAmongRandom(L):
     # print("The Decision Helper created a list with ", randomMultiple1, "representation(s) of your first choice: ", choices[0])
     # print("The Decision Helper created a list with ", randomMultiple2, "representation(s) of your first choice: ", choices[1])
     rardecision = random.choice(choicesToMultiple) #randomly choose among the new list of random number of choices to add a level of randomness
-    # print("The Decision Helper then randomly chose: ", decision)
+    # print("The Decision Helper then randomly chose: ", rardecision)
     return rardecision
 
 def coinFlips3(L): 
@@ -649,11 +651,24 @@ def shuffle(L):
     print("Please choose what index you would like the decision helper to choose from between 0 and ", len(L)-1, "or choose 'random' and Decision Helper will choose for you")
     indexChoice = input()
     if indexChoice == "random" or indexChoice == "Random" or indexChoice == "RANDOM":
-        x = random.choice(range(L))
-        print("random index: ", x)
+        listIndexs = []
+
+        for x in L:
+            indexNumber = L.index(x)
+            listIndexs.append(indexNumber)
+            # print("listIndexs:", listIndexs)
+
+        # print("listIndexs:", listIndexs)
+        x = random.choice(listIndexs)
+        print()
+        print("Decision Helper randomly chose index: ", x)
+        print("After shuffling, the list looked like this: ")
+        printListWithIndex(L)
+        return L[x]
     else:
         indexChoice = int(indexChoice)
-        print("You chose whatever option lays in index ", indexChoice)
+        print()
+        print("You chose whatever option lays in index: ", indexChoice)
         print("After shuffling, the list looked like this: ")
         printListWithIndex(L)
         return L[indexChoice]
@@ -763,7 +778,7 @@ def Start():
                 print("Decision Helper decided: ")
                 print("\"", decision, "\"")
                 while True: #keep asking until they say no
-                    print("Would you like to play \"Random among random\" again with the same choices? Y or N") #play rock paper scissors again with same choices
+                    print("Would you like to play 4) Random among random again with the same choices? Y or N") #play rock paper scissors again with same choices
                     randOfRandAgain = input()
                     print()
                     if randOfRandAgain == 'Y' or randOfRandAgain == 'y' or randOfRandAgain == 'Yes' or randOfRandAgain == 'yes':
@@ -826,10 +841,7 @@ def Start():
                     else:
                         print("I didn't understand your input! Continuting...")
                         continue 
-
-
-
-                    
+                
                 print("Hope that helped!")
 
             elif kd ==2:
@@ -883,11 +895,146 @@ def Start():
                         print("I didn't understand your input! Continuting...")
                         continue 
 
+            elif kd == 4:
+                print()
+                print("You chose option 4) 'Random among random'. This means that Decision Helper will create a list of a random multiple (between 0 and 100) " + 
+                "of each choice and then choose among said list of choices.") 
+                random3decision = randomAmongRandom(choices)
+                print()
+                print("Decision Helper decided: ")
+                print("\"", random3decision, "\"")
+                while True: #keep asking until they say no
+                    print()
+                    print("Would you like to play 4) Random among random again with the same choices? Y or N") #play rock paper scissors again with same choices
+                    randOfRand3Again = input()
+                    print()
+                    if randOfRand3Again == 'Y' or randOfRand3Again == 'y' or randOfRand3Again == 'Yes' or randOfRand3Again == 'yes':
+                        print("Here we go again!")
+                        random3decision = randomAmongRandom(choices)
+                        print("And therefore, the decision is: \"", random3decision, "\"")
+                        print()
+                        continue
+                    elif randOfRand3Again == 'N' or randOfRand3Again == 'n' or randOfRand3Again == 'No' or randOfRand3Again == 'no':
+                        print("Ok no problem!")
+                        break
+                    else:
+                        print("I didn't understand your input! Continuting...")
+                        continue 
+                
+                print("Hope that helped!")
 
             
             elif kd ==9:
                 break
-            
+
+        elif numChoice == 3:
+            print()
+            print("You've chosen option 3) More Than Three Choices") 
+            print("Please enter your choices. When you're done, type \"done\" as your last choice.")
+            choices = []
+            while True:
+                choice = input()
+                # print("choice: ", choice)
+                if choice == "done" or choice == "DONE" or choice == "Done":
+                    # print("but why")
+                    break
+                else:
+                    # print("but why again?")
+                    choices.append(choice)
+                    continue
+
+            print()
+            print("Great! Your choices were: ")
+            printList(choices)
+            print()
+            print("Now that you've entered your choices...")
+            kindOfDecisionMoreThanThreeChoices()
+            kd = input()
+            try:
+                kd = int(kd)   # make into an int!
+            except:
+                print("I didn't understand your input...Please Try again!")
+                kindOfDecisionMoreThanThreeChoices()
+
+            if kd == 1: #choose randomly between the 3
+                
+                rand3plusagain = random.choice(choices)
+                print()
+                print("You chose option 1) 'Random' and the Decision Helper decided: ")
+                print("\"", rand3plusagain, "\"")
+
+                # print("need to test loop still")
+                while True: #keep asking until they say no
+                    print("Would you like to play 1) Random again with the same choices? Y or N") #play rock paper scissors again with same choices
+                    rand3again = input()
+                    print()
+                    if rand3plusagain == 'Y' or rand3plusagain == 'y' or rand3plusagain == 'Yes' or rand3plusagain == 'yes':
+                        print("Here we go again!")
+                        rand3plusagain = random.choice(choices)
+                        print("And therefore, the decision is: \"", rand3plusagain, "\"")
+                        print()
+                        continue
+                    elif rand3plusagain == 'N' or rand3plusagain == 'n' or rand3plusagain == 'No' or rand3plusagain == 'no':
+                        print("Ok no problem!")
+                        break
+                    else:
+                        print("I didn't understand your input! Continuting...")
+                        continue 
+            if kd == 2:
+                print()
+                print("You chose option 2) Shuffle among choices. This means Decision Helper will shuffle through your" +  
+                " and then you'll decide which index to randomly pick.")
+                shuffle3PlusDecision = shuffle(choices)
+                print()
+                print("And therefore, the decision is: \"", shuffle3PlusDecision, "\"")
+                
+                while True: #keep asking until they say no
+                    print()
+                    print("Would you like to play 2) Shuffle among choices again with the same choices? Y or N") #play rock paper scissors again with same choices
+                    shuffle3plusagain = input()
+                    print()
+                    if shuffle3plusagain == 'Y' or shuffle3plusagain == 'y' or shuffle3plusagain == 'Yes' or shuffle3plusagain == 'yes':
+                        print("Here we go again!")
+                        shuffle3PlusDecision = shuffle(choices)
+                        print("And therefore, the decision is: \"", shuffle3PlusDecision, "\"")
+                        print()
+                        continue
+                    elif shuffle3plusagain == 'N' or shuffle3plusagain == 'n' or shuffle3plusagain == 'No' or shuffle3plusagain == 'no':
+                        print("Ok no problem!")
+                        break
+                    else:
+                        print("I didn't understand your input! Continuting...")
+                        continue 
+
+            elif kd == 3:
+                print()
+                print("You chose option 3) 'Random among random'. This means that Decision Helper will create a list of a random multiple (between 0 and 1000) " + 
+                "of each choice and then choose among said list of choices.") 
+                rand3plusdecision = randomAmongRandom(choices)
+                print("Decision Helper decided: ")
+                print("\"", rand3plusdecision, "\"")
+                while True: #keep asking until they say no
+                    print("Would you like to play 4) Random among random again with the same choices? Y or N") #play rock paper scissors again with same choices
+                    randOfRand3PlusAgain = input()
+                    print()
+                    if randOfRand3PlusAgain == 'Y' or randOfRand3PlusAgain == 'y' or randOfRand3PlusAgain == 'Yes' or randOfRand3PlusAgain == 'yes':
+                        print("Here we go again!")
+                        rand3plusdecision = randomAmongRandom(choices)
+                        print("And therefore, the decision is: \"", rand3plusdecision, "\"")
+                        print()
+                        continue
+                    elif randOfRand3PlusAgain == 'N' or randOfRand3PlusAgain == 'n' or randOfRand3PlusAgain == 'No' or randOfRand3PlusAgain == 'no':
+                        print("Ok no problem!")
+                        break
+                    else:
+                        print("I didn't understand your input! Continuting...")
+                        continue 
+                
+                print("Hope that helped!")
+
+
+        
+        
         elif numChoice == 9:
             break
             
@@ -928,7 +1075,7 @@ random.randint(a, b)
     ?even for which number of decisions
 
 
-random.shuffle(x[, random])¶
+√random.shuffle(x[, random])¶
     Shuffle the sequence x in place. The optional argument random is a 0-argument function returning a random float in [0.0, 1.0); by default, this is the function random().
     Note that for even rather small len(x), the total number of permutations of x is larger than the period of most random number generators; this implies that most permutations of a long sequence can never be generated.
 
